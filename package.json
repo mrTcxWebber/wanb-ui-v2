@@ -21,6 +21,14 @@
   },
   "homepage": "https://github.com/mrTcxWebber/wanb-ui-v2#readme",
   "dependencies": {
-    "vue": "^2.5.16"
+    "app.vue": "^0.1.10",
+    "vue": "^2.6.12",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.2.0",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.10",
+    "vue-template-compiler": "^2.6.12"
   }
 }
