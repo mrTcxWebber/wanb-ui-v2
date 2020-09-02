@@ -147,26 +147,25 @@
         const div = document.createElement('div')
         div.id = 'test6'
         document.body.appendChild(div)
-        const ContentComponent = Vue.extend({
-            props: ['loading'],
-            render(h) {
-                return h(wButton, { loading: this.loading }, ['btn6'])
-            }
-        })
-        const button = new ContentComponent({
+        const Constructor = Vue.extend(wButton)
+        const vm = new Constructor({
             propsData: {
                 icon: 'setting',
-                loading: true
             }
         })
-        button.$mount('#test6')
-        button.$on('click', function () {
-            console.log('111111');
-            expect(1).to.eq(1)
-        })
+        vm.$mount('#test6')
+        // button.$on('click', function () {
+        //     console.log('111111');
+        //     expect(1).to.eq(1)
+        // })
+        let spy = chai.spy(function () { console.log(11111) })
+
+        vm.$on('click', spy)
         // 希望这个函数被执行
-        let button2 = button.$el
-        button2.click()
+        console.log(vm);
+        let button = vm.$el
+        button.click()
+        expect(spy).to.have.been.called()
     }
 </script>
 <style lang="scss">
