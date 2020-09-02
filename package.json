@@ -1,0 +1,26 @@
+{
+  "name": "vanb-ui-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx parcel index.html --no-cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrTcxWebber/wanb-ui-v2.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrTcxWebber/wanb-ui-v2/issues"
+  },
+  "homepage": "https://github.com/mrTcxWebber/wanb-ui-v2#readme",
+  "dependencies": {
+    "vue": "^2.5.16"
+  }
+}
