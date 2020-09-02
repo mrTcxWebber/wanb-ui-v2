@@ -1,3 +1,5 @@
 module.exports = {
-    runtimerCompiler: true
+    alias: {
+        vue: 'vue/dist/vue.esm.js'
+    }
 }

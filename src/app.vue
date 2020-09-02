@@ -33,6 +33,141 @@
         methods: {
         },
     }
+    import Vue from 'vue'
+    import chai from 'chai'
+    import spies from 'chai-spies'
+    chai.use(spies)
+
+    const expect = chai.expect
+    // 测试传入icon之后有没有出现icon
+    {
+        const ContentComponent = Vue.extend({
+            props: ['icon'],
+            // components: { wButton },
+            // template: '<w-button>unit test1</w-button>',
+            render: function (h) {
+                // console.log(this.icon)
+                return h(wButton, { props: { icon: this.icon } }, ['unit test1'])
+                // return h(wButton, '10')
+            },
+            mounted() {
+                // console.log(this.icon);
+            }
+        })
+        const button = new ContentComponent({
+            propsData: {
+                icon: 'right'
+            }
+        })
+        // console.log(button)
+        button.$mount('#test')
+        let useElement = button.$el.querySelector('use')
+        let href = useElement.getAttribute('xlink:href')
+        expect(href).to.eq('#i-right')
+        button.$el.remove()
+        button.$destroy()
+    }
+    {
+        // 测试有没有loading的icon
+        const div = document.createElement('div');
+        div.id = 'test2'
+        document.body.appendChild(div)
+        const ContentComponent = Vue.extend({
+            props: ['loading', 'icon'],
+            render: function (h) {
+                return h(wButton, { props: { icon: this.icon, loading: this.loading } }, ['btn2'])
+            }
+        })
+        const button = new ContentComponent({
+            propsData: {
+                loading: true,
+                icon: 'left'
+            }
+        })
+        button.$mount('#test2')
+        console.log(button);
+        const useElement = button.$el.querySelector('use')
+        const href = useElement.getAttribute('xlink:href')
+        expect(href).to.equal('#i-loading')
+        button.$el.remove()
+        button.$destroy()
+        // div.remove()
+    }
+    {
+        // 测试icon的order是1
+        const ContentComponent = Vue.extend({
+            props: ['icon'],
+            render(h) {
+                return h(wButton, { props: { icon: this.icon } }, ['btn3'])
+            }
+        })
+        const button = new ContentComponent({
+            propsData: {
+                icon: 'setting'
+            }
+        })
+        const div = document.createElement('div')
+        div.id = 'test4'
+        document.body.appendChild(div)
+        button.$mount('#test4')
+        const svg = button.$el.querySelector('svg')
+        const { order } = window.getComputedStyle(svg)
+        // console.log(order);
+        expect(order).to.equal('1')
+        button.$el.remove()
+        button.$destroy()
+    }
+    {
+        // 测试icon的order是2
+        const div = document.createElement('div')
+        div.id = 'test5'
+        document.body.appendChild(div)
+        const ContentComponent = Vue.extend({
+            props: ['icon', 'iconPosition'],
+            render(h) {
+                return h(wButton, { props: { icon: this.icon, iconPosition: this.iconPosition } }, ['btn3'])
+            }
+        })
+        const button = new ContentComponent({
+            propsData: {
+                icon: 'setting',
+                iconPosition: 'right'
+            }
+        })
+        button.$mount('#test5')
+        const svg = button.$el.querySelector('svg')
+        const { order } = window.getComputedStyle(svg)
+        // console.log(order);
+        expect(order).to.equal('2')
+        button.$el.remove()
+        button.$destroy()
+    }
+    {
+        // 测试button的点击事件
+        const div = document.createElement('div')
+        div.id = 'test6'
+        document.body.appendChild(div)
+        const ContentComponent = Vue.extend({
+            props: ['loading'],
+            render(h) {
+                return h(wButton, { loading: this.loading }, ['btn6'])
+            }
+        })
+        const button = new ContentComponent({
+            propsData: {
+                icon: 'setting',
+                loading: true
+            }
+        })
+        button.$mount('#test6')
+        button.$on('click', function () {
+            console.log('111111');
+            expect(1).to.eq(1)
+        })
+        // 希望这个函数被执行
+        let button2 = button.$el
+        button2.click()
+    }
 </script>
 <style lang="scss">
 
