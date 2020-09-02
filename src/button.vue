@@ -1,29 +1,53 @@
 <template>
-  <button class="g-button" :class="[`icon-${iconPosition}`]">
-    <svg v-if="icon" class="icon">
+  <button class="w-button" :class="[`icon-${iconPosition}`]" @click="$emit('click','10萨比')">
+    <!-- <svg v-if="icon" class="icon">
       <use :xlink:href="`#i-${icon}`"></use>
-    </svg>
+    </svg> -->
+    <w-icon v-if="icon && !loading" class="icon" :name="icon"></w-icon>
+    <w-icon v-if="loading" class="loading" name="loading"></w-icon>
     <div class="content">
       <slot></slot>
     </div>
   </button>
 </template>
 <script>
+  import wIcon from "./icon.vue"
   export default {
     props: {
-      icon: {},
+      icon: {
+        type: String,
+        default: ''
+      },
       iconPosition: {
         type: String,
         default: 'left',
-        validator(value) {
+        validator(value) { // 验证非左或者非右
           return value === 'left' || value === 'right'
         }
+      },
+      loading: {
+        type: Boolean,
+        default: false
       }
-    }
+    },
+    components: { wIcon },
+    mounted() {
+      // console.log(this.icon)
+    },
   }
 </script>
 <style lang="scss">
-  .g-button {
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .w-button {
     font-size: var(--font-size);
     height: var(--button-height);
     padding: 0 1em;
@@ -67,6 +91,11 @@
         margin-right: 0;
         margin-left: .2em;
       }
+    }
+
+    >.loading {
+      animation: spin 2s infinite linear;
+      margin-right: 0.2em;
     }
   }
 </style>
