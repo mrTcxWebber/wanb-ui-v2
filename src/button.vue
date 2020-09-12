@@ -5,7 +5,7 @@
     </svg> -->
     <w-icon v-if="icon && !loading" class="icon" :name="icon"></w-icon>
     <w-icon v-if="loading" class="loading" name="loading"></w-icon>
-    <div class="content">
+    <div class="content test23456">
       <slot></slot>
     </div>
   </button>
@@ -36,6 +36,7 @@
     },
   }
 </script>
+/* eslint-disable */
 <style lang="scss">
   @keyframes spin {
     0% {
