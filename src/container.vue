@@ -14,7 +14,7 @@
         },
         mounted() {
             this.$children.forEach((c) => {
-                console.log(c.$options.name);
+                // console.log(c.$options.name);
                 if (c.$options.name === 'vAside') {
                     this.hasAside = true
                 }

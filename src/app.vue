@@ -103,6 +103,12 @@
                 <w-footer>footer</w-footer>
             </w-container>
         </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局</h3>
+            <w-button @click="showToast">
+                弹出toast
+            </w-button>
+        </div>
     </div>
 </template>
 <script>
@@ -117,6 +123,7 @@
     import wMain from "./main.vue"
     import wAside from "./aside.vue"
     import wFooter from "./footer.vue"
+    
     export default {
         name: 'app',
         components: {
@@ -136,6 +143,9 @@
             }
         },
         methods: {
+            showToast() {
+                this.$toast()
+            }
         },
     }
     // import Vue from 'vue'
