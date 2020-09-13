@@ -4,9 +4,9 @@
   "description": "vue2-ui",
   "main": "dist/index.js",
   "scripts": {
-    "start": "npx parcel index.html --no-cache",
-    "build": "npx parcel build index.js --no-cache --no-minify",
-    "dev-test": "npx parcel watch test/* --no-cache & npx karma start",
+    "start": "parcel index.html --no-cache",
+    "build": "parcel build index.js --no-cache --no-minify",
+    "dev-test": "parcel watch test/* --no-cache & karma start",
     "test": "parcel build test/* --no-minify && karma start --single-run"
   },
   "repository": {

@@ -10,7 +10,11 @@
             <w-input placeholder="测试3" readonly />
         </div>
         <div class="vanb-doc-demo-block">
-            <w-input placeholder="测试4" value="有点怕" error="密码长度为6"></w-input>
+            <w-input placeholder="测试4" value="有点怕" error="密码长度为5"></w-input>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <w-input placeholder="测试5" v-model="dbtxt"></w-input>
+            <p>{{dbtxt}}</p>
         </div>
         <div class="vanb-doc-demo-block">
             <w-button :loading="loading1" @click="loading1 = !loading1">
@@ -42,7 +46,8 @@
             return {
                 loading1: false,
                 loading2: true,
-                loading3: false
+                loading3: false,
+                dbtxt: ''
             }
         },
         methods: {
