@@ -5,7 +5,7 @@
     </svg> -->
     <w-icon v-if="icon && !loading" class="icon" :name="icon"></w-icon>
     <w-icon v-if="loading" class="loading" name="loading"></w-icon>
-    <div class="content test23456">
+    <div class="content test">
       <slot></slot>
     </div>
   </button>
@@ -13,6 +13,7 @@
 <script>
   import wIcon from "./icon.vue"
   export default {
+    name: 'button',
     props: {
       icon: {
         type: String,
