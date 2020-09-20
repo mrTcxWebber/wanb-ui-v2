@@ -33,15 +33,40 @@
                 <w-button icon="right" icon-position="right">下一页</w-button>
             </w-button-group>
         </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局 gutter="20"</h3>
+            <w-row>
+                <w-col span="24" :pc="{span:12}" :narrowPc="{span:8}">1</w-col>
+                <w-col span="24" :pc="{span:12}" :narrowPc="{span:8}">2</w-col>
+                <w-col span="24" :pc="{span:12}" :narrowPc="{span:8}">3</w-col>
+            </w-row>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局</h3>
+            <w-row>
+                <w-col span="12" :narrowPc="{span:8}">1</w-col>
+                <w-col span="12" :narrowPc="{span:8}">2</w-col>
+                <w-col span="12" :narrowPc="{span:8}">3</w-col>
+            </w-row>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局</h3>
+            <w-row>
+                <w-col span="12" :narrowPc="{span:12,offset:10}">1</w-col>
+            </w-row>
+        </div>
     </div>
 </template>
 <script>
+    // 一般引入组件首字母大写
     import wButton from "./button.vue"
     import wButtonGroup from "./button-group.vue"
     import wInput from "./input.vue"
+    import wRow from "./row.vue"
+    import wCol from "./col.vue"
     export default {
         name: 'app',
-        components: { wButton, wButtonGroup, wInput },
+        components: { wButton, wButtonGroup, wInput, wRow, wCol },
         data() {
             return {
                 loading1: false,
@@ -191,5 +216,22 @@
 <style lang="scss">
     .vanb-doc-demo-block {
         margin: 15px;
+
+        .col {
+            margin-bottom: 10px;
+            color: #fff;
+            font-size: 13px;
+            line-height: 30px;
+            text-align: center;
+            background-clip: content-box;
+
+            &:nth-child(even) {
+                background-color: #66c6f2;
+            }
+
+            &:nth-child(odd) {
+                background-color: #39a9ed;
+            }
+        }
     }
 </style>

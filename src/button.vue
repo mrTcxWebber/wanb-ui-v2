@@ -13,7 +13,7 @@
 <script>
   import wIcon from "./icon.vue"
   export default {
-    name: 'button',
+    name: 'wButton',
     props: {
       icon: {
         type: String,
