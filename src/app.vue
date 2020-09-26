@@ -55,6 +55,13 @@
                 <w-col span="12" :narrowPc="{span:12,offset:10}">1</w-col>
             </w-row>
         </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局</h3>
+            <w-row>
+                <w-col span="1" offset="1">1</w-col>
+                <w-col span="12" offset="11">1</w-col>
+            </w-row>
+        </div>
     </div>
 </template>
 <script>
