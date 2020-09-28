@@ -62,6 +62,47 @@
                 <w-col span="12" offset="11">1</w-col>
             </w-row>
         </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局</h3>
+            <w-container>
+                <w-header>header</w-header>
+                <w-main>main</w-main>
+                <w-footer>footer</w-footer>
+            </w-container>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局</h3>
+            <w-container>
+                <w-header>header</w-header>
+                <w-container>
+                    <w-aside style="width:200px;">aside</w-aside>
+                    <w-main>main</w-main>
+                </w-container>
+                <w-footer>footer</w-footer>
+            </w-container>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局</h3>
+            <w-container>
+                <w-header>header</w-header>
+                <w-container>
+                    <w-main>main</w-main>
+                    <w-aside style="width:200px;">aside</w-aside>
+                </w-container>
+                <w-footer>footer</w-footer>
+            </w-container>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>Layout布局</h3>
+            <w-container>
+                <w-header>header</w-header>
+                <w-aside style="width:200px;">aside</w-aside>
+                <w-container>
+                    <w-main>main</w-main>
+                </w-container>
+                <w-footer>footer</w-footer>
+            </w-container>
+        </div>
     </div>
 </template>
 <script>
@@ -71,9 +112,21 @@
     import wInput from "./input.vue"
     import wRow from "./row.vue"
     import wCol from "./col.vue"
+    import wContainer from "./container.vue"
+    import wHeader from "./header.vue"
+    import wMain from "./main.vue"
+    import wAside from "./aside.vue"
+    import wFooter from "./footer.vue"
     export default {
         name: 'app',
-        components: { wButton, wButtonGroup, wInput, wRow, wCol },
+        components: {
+            wButton, wButtonGroup, wInput, wRow, wCol,
+            wContainer,
+            wHeader,
+            wMain,
+            wAside,
+            wFooter
+        },
         data() {
             return {
                 loading1: false,
@@ -239,6 +292,29 @@
             &:nth-child(odd) {
                 background-color: #39a9ed;
             }
+        }
+
+        .v-container {
+            text-align: center;
+        }
+
+        .v-footer,
+        .v-header {
+            background-color: #b3c0d1;
+            color: #333;
+            line-height: 60px;
+        }
+
+        .v-aside {
+            background-color: #d3dce6;
+
+            line-height: 200px;
+        }
+
+        .v-main {
+            background-color: #e9eef3;
+            color: #333;
+            line-height: 160px;
         }
     }
 </style>
