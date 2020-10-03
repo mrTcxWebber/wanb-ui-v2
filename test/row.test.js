@@ -29,8 +29,8 @@ describe('Row', () => {
             }
         })
         vm.$mount(div)
-        console.log(vm.$el, 66)
-        console.log(div.outerHTML, 66);
+        // console.log(vm.$el, 66)
+        // console.log(div.outerHTML, 66);
         // const row = vm.$el.querySelector('.row')
         expect(getComputedStyle(vm.$el).marginLeft).to.eq('-5px')
         const col = vm.$el.querySelector('.col')

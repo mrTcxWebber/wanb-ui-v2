@@ -24,7 +24,7 @@ describe('Input', () => {
                 }
             }).$mount()
             const ele = vm.$el.querySelector('input')
-            console.log(23, vm.$el.querySelector('input'));
+            // console.log(23, vm.$el.querySelector('input'));
             expect(ele.value).to.equal('1234')
         })
         it('接收error', () => {

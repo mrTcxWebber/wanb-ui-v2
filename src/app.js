@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Button from './button'
 import app from './app.vue'
 import Toast from "./toast.js"
-console.log(Toast);
-Vue.use(Toast.install)
+
+Vue.use(Toast)
 
 // Vue.component('g-button', Button)
 
