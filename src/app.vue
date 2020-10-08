@@ -104,7 +104,7 @@
             </w-container>
         </div>
         <div class="vanb-doc-demo-block">
-            <h3>Layout布局</h3>
+            <h3>Toast布局</h3>
             <w-button @click="showToast1">
                 弹出toast - top
             </w-button>
@@ -121,6 +121,40 @@
                toast 倒计时
             </w-button>
         </div>
+        <div class="vanb-doc-demo-block">
+            <h3>tabs</h3>
+            <w-tabs style="width:360px;" v-model="tabActive">
+                <w-tab title="标签1" index="0">内容 1</w-tab>
+                <w-tab title="标签2" index="1">内容 2</w-tab>
+                <w-tab title="标签3" index="2">内容 3</w-tab>
+                <w-tab title="标签4" index="3">内容 4</w-tab>
+                <!-- <w-tab title="标签5" index="4">内容 5</w-tab>
+                <w-tab title="标签6" index="5">内容 6</w-tab> -->
+            </w-tabs>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>tabs 标签数量超过 5 个时，标签栏可以在水平方向上滚动，切换时会自动将当前标签居中。</h3>
+            <w-tabs style="width:360px;" v-model="tabActive" @disabled="tabsDisabled" @click="tabsClick">
+                <w-tab title="标签1" index="0">内容 1</w-tab>
+                <w-tab title="标签2" index="1">内容 2</w-tab>
+                <w-tab title="标签3" index="2" disabled>内容 3</w-tab>
+                <w-tab title="标签4" index="3">内容 4</w-tab>
+                <w-tab title="标签5" index="4">内容 5</w-tab>
+                <w-tab title="标签6" index="5">内容 6</w-tab>
+                <w-tab title="标签7" index="6">内容 7</w-tab>
+                <w-tab title="标签8" index="7">内容 8</w-tab>
+                <w-tab title="标签9" index="8">内容 9</w-tab>
+            </w-tabs>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>tabs 切换动画</h3>
+            <w-tabs style="width:360px;" v-model="tabActive" animated>
+                <w-tab title="标签1" index="0">内容 1</w-tab>
+                <w-tab title="标签2" index="1">内容 2</w-tab>
+                <w-tab title="标签3" index="2">内容 3</w-tab>
+                <w-tab title="标签4" index="3">内容 4</w-tab>
+            </w-tabs>
+        </div>
     </div>
 </template>
 <script>
@@ -135,7 +169,8 @@
     import wMain from "./main.vue"
     import wAside from "./aside.vue"
     import wFooter from "./footer.vue"
-import { log } from 'util'
+    import wTabs from "./tabs.vue"
+    import wTab from "./tab.vue"
     
     export default {
         name: 'app',
@@ -145,15 +180,20 @@ import { log } from 'util'
             wHeader,
             wMain,
             wAside,
-            wFooter
+            wFooter,
+            wTabs,
+            wTab
         },
         data() {
             return {
                 loading1: false,
                 loading2: true,
                 loading3: false,
-                dbtxt: ''
+                dbtxt: '',
+                tabActive: 3 
             }
+        },
+        watch:{
         },
         methods: {
             showToast1() {
@@ -226,6 +266,12 @@ import { log } from 'util'
                         toast.closeToast();
                     }
                 }, 1000);
+            },
+            tabsDisabled(index, title){
+                console.log(`第${index}个被禁用了, ${title}`);
+            },
+            tabsClick(index, title){
+                console.log(`${title} 被我点击了，是第${index}个`);
             }
         },
     }
