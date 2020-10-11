@@ -118,7 +118,7 @@
                 弹出toast - text
             </w-button>
             <w-button @click="showToast5">
-               toast 倒计时
+                toast 倒计时
             </w-button>
         </div>
         <div class="vanb-doc-demo-block">
@@ -155,6 +155,22 @@
                 <w-tab title="标签4" index="3">内容 4</w-tab>
             </w-tabs>
         </div>
+        <div class="vanb-doc-demo-block">
+            <h3>collapse 折叠面板 基础用法</h3>
+            <w-collapse v-model="activeNamesA" style="width:360px;">
+                <w-collapse-item title="标题1" name="1">内容1</w-collapse-item>
+                <w-collapse-item title="标题2" name="2">内容2</w-collapse-item>
+                <w-collapse-item title="标题3" name="3" disabled>内容3</w-collapse-item>
+            </w-collapse>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>collapse 折叠面板 手风琴</h3>
+            <w-collapse v-model="activeNamesB" accordion style="width:360px;">
+                <w-collapse-item title="标题1" name="1">内容1</w-collapse-item>
+                <w-collapse-item title="标题2" name="2">内容2</w-collapse-item>
+                <w-collapse-item title="标题3" name="3" disabled>内容3</w-collapse-item>
+            </w-collapse>
+        </div>
     </div>
 </template>
 <script>
@@ -171,7 +187,10 @@
     import wFooter from "./footer.vue"
     import wTabs from "./tabs.vue"
     import wTab from "./tab.vue"
-    
+    import wCollapse from "./collapse.vue"
+    import wCollapseItem from "./collapse-item.vue"
+
+
     export default {
         name: 'app',
         components: {
@@ -182,7 +201,9 @@
             wAside,
             wFooter,
             wTabs,
-            wTab
+            wTab,
+            wCollapse,
+            wCollapseItem
         },
         data() {
             return {
@@ -190,10 +211,12 @@
                 loading2: true,
                 loading3: false,
                 dbtxt: '',
-                tabActive: 3 
+                tabActive: 3,
+                activeNamesA: [],
+                activeNamesB: ''
             }
         },
-        watch:{
+        watch: {
         },
         methods: {
             showToast1() {
@@ -205,7 +228,7 @@
                     // duration: 0,
                     forbidClick: true,
                     closeOnClick: true,
-                    onClose(){
+                    onClose() {
                         console.log('准备关闭了')
                     }
                 })
@@ -218,20 +241,20 @@
                     // duration: 0,
                     forbidClick: true,
                     closeOnClick: true,
-                    onClose(){
+                    onClose() {
                         console.log('准备关闭了2')
                     }
                 })
             },
             showToast3() {
-                this.$toast('这里可以覆盖默认的',{
+                this.$toast('这里可以覆盖默认的', {
                     message: '测试333',
                     type: 'html',
                     position: 'bottom',
                     // duration: 0,
                     forbidClick: true,
                     // closeOnClick: true,
-                    onClose(){
+                    onClose() {
                         console.log('准关闭了3覆盖')
                     }
                 })
@@ -248,7 +271,7 @@
                     // }
                 })
             },
-            showToast5(){
+            showToast5() {
                 const toast = this.$toast({
                     message: '倒计时 3 秒',
                     duration: 0,
@@ -262,15 +285,15 @@
                     } else {
                         clearInterval(timer);
                         // 手动清除 Toast
-                        toast.isShow=false;
+                        toast.isShow = false;
                         toast.closeToast();
                     }
                 }, 1000);
             },
-            tabsDisabled(index, title){
+            tabsDisabled(index, title) {
                 console.log(`第${index}个被禁用了, ${title}`);
             },
-            tabsClick(index, title){
+            tabsClick(index, title) {
                 console.log(`${title} 被我点击了，是第${index}个`);
             }
         },
@@ -413,6 +436,10 @@
 <style lang="scss">
     .vanb-doc-demo-block {
         margin: 15px;
+
+        h3 {
+            margin-bottom: 10px;
+        }
 
         .col {
             margin-bottom: 10px;

@@ -15,12 +15,12 @@ const iRaf = root.requestAnimationFrame || fallback;
 
 const iCancel = root.cancelAnimationFrame || root.clearTimeout;
 
-function raf(fn) {
+export function raf(fn) {
     return iRaf.call(root, fn);
 }
 
 // double raf for animation
-function doubleRaf(fn) {
+export function doubleRaf(fn) {
     raf(() => {
         raf(fn);
     });
