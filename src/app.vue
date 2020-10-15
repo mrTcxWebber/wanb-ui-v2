@@ -171,6 +171,66 @@
                 <w-collapse-item title="标题3" name="3" disabled>内容3</w-collapse-item>
             </w-collapse>
         </div>
+        <div class="vanb-doc-demo-block">
+            <h3>popover hover</h3>
+            <w-popover position="bottom" trigger="hover">
+                <template slot="content">
+                    <div>askdjsakdjsakjdslkjdlskjdlsjkdlskjdlsjkdlskjdlsajkdlajkdlkajdlksajdladjk</div>
+                    <div>askdjsakdjsakjdslkjdlskjdlsjkdlskjdlsjkdlskjdlsajkdlajkdlkajdlksajdladjk</div>
+                </template>
+                <w-button>点我</w-button>
+            </w-popover>
+            <w-popover position="top" trigger="hover">
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <w-button>点我</w-button>
+            </w-popover>
+            <w-popover position="left" trigger="hover">
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <w-button>点我</w-button>
+            </w-popover>
+            <w-popover position="right" trigger="hover">
+                <template slot="content">
+                    <div>popover <a href="http://qq.com">看新网</a> 内容</div>
+                </template>
+                <w-button>点我</w-button>
+            </w-popover>
+        </div>
+        <div class="vanb-doc-demo-block">
+            <h3>popover</h3>
+            <w-popover position="bottom">
+                <template slot="content" slot-scope="{close}">
+                    <div>文字</div>
+                    <div>popover <a href="http://qq.com">看新网</a> 内容</div>
+                    <w-button @click="close">关闭</w-button>
+                </template>
+                <w-button>点我</w-button>
+            </w-popover>
+            <w-popover position="top">
+                <template slot="content">
+                    <div>popover内容
+                        <w-button>关闭</w-button>
+                    </div>
+                </template>
+                <w-button>点我</w-button>
+            </w-popover>
+            <w-popover position="left">
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <w-button>点我</w-button>
+            </w-popover>
+            <w-popover position="right">
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <w-button>点我</w-button>
+            </w-popover>
+        </div>
+
     </div>
 </template>
 <script>
@@ -189,6 +249,7 @@
     import wTab from "./tab.vue"
     import wCollapse from "./collapse.vue"
     import wCollapseItem from "./collapse-item.vue"
+    import wPopover from "./popover.vue"
 
 
     export default {
@@ -203,7 +264,8 @@
             wTabs,
             wTab,
             wCollapse,
-            wCollapseItem
+            wCollapseItem,
+            wPopover
         },
         data() {
             return {
