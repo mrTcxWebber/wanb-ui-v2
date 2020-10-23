@@ -1,11 +1,11 @@
 <template>
-  <button class="w-button" :class="[`icon-${iconPosition}`]" @click="$emit('click','10萨比')">
+  <button class="w-button" :class="[`icon-${iconPosition}`]" @click="$emit('click')">
     <!-- <svg v-if="icon" class="icon">
       <use :xlink:href="`#i-${icon}`"></use>
     </svg> -->
     <w-icon v-if="icon && !loading" class="icon" :name="icon"></w-icon>
     <w-icon v-if="loading" class="loading" name="loading"></w-icon>
-    <div class="content test">
+    <div class="content">
       <slot></slot>
     </div>
   </button>
@@ -39,6 +39,15 @@
 </script>
 /* eslint-disable */
 <style lang="scss">
+  $button-height: 32px;
+  $font-size: 14px;
+  $button-bg: white;
+  $button-active-bg: #eee;
+  $border-radius: 4px;
+  $color: #333;
+  $border-color: #999;
+  $border-color-hover: #666;
+
   @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -50,24 +59,24 @@
   }
 
   .w-button {
-    font-size: var(--font-size);
-    height: var(--button-height);
+    font-size: $font-size;
+    height: $button-height;
     padding: 0 1em;
     line-height: 1;
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    background: var(--button-bg);
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+    background: $button-bg;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     vertical-align: middle;
 
     &:hover {
-      border-color: var(--border-color-hover);
+      border-color: $border-color-hover;
     }
 
     &:active {
-      background-color: var(--button-active-bg);
+      background-color: $button-active-bg;
     }
 
     &:focus {

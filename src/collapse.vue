@@ -38,7 +38,7 @@
                 }
                 this.currentSelected = name
                 this.$emit('toSelected', name);
-                this.$emit('input', name);
+                this.$emit('change', name);
             }
         }
     }
