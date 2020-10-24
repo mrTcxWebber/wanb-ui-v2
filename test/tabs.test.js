@@ -79,79 +79,147 @@ describe('tab', () => {
                 done()
             }, 400);
         })
-        //     it('接收 animated', () => {
-        //         const Constructor = Vue.extend({
-        //             props: ['selecte', 'animated'],
-        //             render: function (h) {
-        //                 let child = []
-        //                 for (let i = 0; i < 3; i++) {
-        //                     child.push(h(tab, { props: { title: `${i + 1}`, index: `${i}` } }, `内容${i + 1}`))
-        //                 }
-        //                 return h(tabs, { props: { selecte: this.selecte, animated: this.animated } }, child)
+        it('接收 animated', (done) => {
+            const Constructor = Vue.extend({
+                props: ['selecte'],
+                render: function (h) {
+                    let child = []
+                    for (let i = 0; i < 5; i++) {
+                        child.push(h(tab, { props: { title: `${i + 1}`, index: `${i}` } }, `内容${i + 1}`))
+                    }
+                    return h(tabs, { props: { selecte: this.selecte } }, child)
+                }
+            })
+            const tabActive = 2
+            const vm = new Constructor({
+                el: document.createElement('div'),
+                data() {
+                    return {
+                        tabActive
+                    }
+                },
+                propsData: {
+                    selecte: tabActive
+                }
+            })
+            setTimeout(() => {
+                expect(vm.$el.querySelector('.w-tabs-body').classList.contains('w-tabs-animated')).to.eq(false)
+                vm.$el.remove()
+                vm.$destroy()
+                done()
+            }, 400);
+
+        })
+    })
+    describe('tab-props', () => {
+
+        it('接收 title index', (done) => {
+            const Constructor = Vue.extend({
+                props: ['selecte'],
+                render: function (h) {
+                    let child = []
+                    for (let i = 0; i < 3; i++) {
+                        child.push(h(tab, { props: { title: `标签${i + 1}`, index: `${i}` } }, `内容${i + 1}`))
+                    }
+                    return h(tabs, { props: { selecte: this.selecte } }, child)
+                }
+            })
+            const vm = new Constructor({
+                el: document.createElement('div'),
+                propsData: {
+                    selecte: 1
+                }
+            })
+            setTimeout(() => {
+                expect(vm.$el.querySelectorAll('.w-tab-text')[1].innerText).to.eq('标签2')
+                vm.$el.remove()
+                vm.$destroy()
+                done()
+            }, 300);
+        })
+
+        it('接收 disabled', () => {
+            const Constructor = Vue.extend({
+                props: ['selecte'],
+                render: function (h) {
+                    let child = []
+                    for (let i = 0; i < 3; i++) {
+                        child.push(h(tab, { props: { title: `${i + 1}`, index: `${i}`, disabled: i == 2 ? true : false } }, `内容${i + 1}`))
+                    }
+                    return h(tabs, { props: { selecte: this.selecte, animated: this.animated } }, child)
+                }
+            })
+            const vm = new Constructor({
+                el: document.createElement('div'),
+                propsData: {
+                    selecte: 0
+                }
+            })
+            setTimeout(() => {
+                expect(vm.$el.querySelectorAll('.w-tab')[0].classList.contains('w-tab-disabled')).to.eq(true)
+                vm.$el.remove()
+                vm.$destroy()
+            }, 300);
+        })
+    })
+    describe('tabs-event', () => {
+
+        // it('click', (done) => {
+        //     const Constructor = Vue.extend({
+        //         props: ['selecte'],
+        //         render: function (h) {
+        //             let child = []
+        //             for (let i = 0; i < 3; i++) {
+        //                 child.push(h(tab, { props: { title: `标签${i + 1}`, index: `${i}` } }, `内容${i + 1}`))
         //             }
-        //         })
-        //         const vm = new Constructor({
-        //             el: document.createElement('div'),
-        //             data() {
-        //                 return {
-        //                     tabActive: 2
-        //                 }
-        //             },
-        //             propsData: {
-        //                 selecte: 2,
-        //                 animated: true
+        //             return h(tabs, { props: { selecte: this.selecte } }, child)
+        //         }
+        //     })
+        //     const vm = new Constructor({
+        //         el: document.createElement('div'),
+        //         propsData: {
+        //             selecte: 1
+        //         }
+        //     })
+        //     const callback = sinon.fake()
+        //     vm.$on('click', callback)
+        //     setTimeout(() => {
+        //         vm.$el.querySelectorAll('.w-tab')[1].click()
+        //         setTimeout(() => {
+        //             expect(callback).to.have.been.called
+        //             vm.$el.remove()
+        //             vm.$destroy()
+        //             done()
+        //         }, 300);
+        //     }, 300);
+        // })
+
+        // it('disabled', (done) => {
+        //     const Constructor = Vue.extend({
+        //         props: ['selecte'],
+        //         render: function (h) {
+        //             let child = []
+        //             for (let i = 0; i < 3; i++) {
+        //                 child.push(h(tab, { props: { title: `标签${i + 1}`, index: `${i}`, disabled: i == 2 ? true : false } }, `内容${i + 1}`))
         //             }
-        //         })
-        //         expect(vm.$el.querySelector('.w-tabs-body').classList.contains('w-tabs-animated')).to.eq(true)
+        //             return h(tabs, { props: { selecte: this.selecte } }, child)
+        //         }
+        //     })
+        //     const vm = new Constructor({
+        //         el: document.createElement('div'),
+        //         propsData: {
+        //             selecte: 1
+        //         }
+        //     })
+        //     const callback = sinon.fake()
+        //     vm.$on('disabled', callback)
+        //     setTimeout(() => {
+        //         vm.$el.querySelectorAll('.w-tab')[2].click()
+        //         expect(callback).to.have.been.called
         //         vm.$el.remove()
         //         vm.$destroy()
-        //     })
+        //         done()
+        //     }, 300);
+        // })
     })
-    // describe('tab-props', () => {
-
-    //     it('接收 title index', () => {
-    //         const Constructor = Vue.extend({
-    //             props: ['selecte'],
-    //             render: function (h) {
-    //                 let child = []
-    //                 for (let i = 0; i < 2; i++) {
-    //                     child.push(h(tab, { props: { title: `标签${i + 1}`, index: `${i}` } }, `内容${i + 1}`))
-    //                 }
-    //                 return h(tabs, { props: { selecte: this.selecte } }, child)
-    //             }
-    //         })
-    //         const vm = new Constructor({
-    //             el: document.createElement('div'),
-    //             propsData: {
-    //                 selecte: 1
-    //             }
-    //         })
-    //         expect(vm.$el.querySelectorAll('.w-tab-text')[1].innerText).to.eq('标签2')
-    //         vm.$el.remove()
-    //         vm.$destroy()
-    //     })
-
-    //     it('接收 disabled', () => {
-    //         const Constructor = Vue.extend({
-    //             props: ['selecte'],
-    //             render: function (h) {
-    //                 let child = []
-    //                 for (let i = 0; i < 3; i++) {
-    //                     child.push(h(tab, { props: { title: `${i + 1}`, index: `${i}`, disabled: i==2?true:false } }, `内容${i + 1}`))
-    //                 }
-    //                 return h(tabs, { props: { selecte: this.selecte, animated: this.animated } }, child)
-    //             }
-    //         })
-    //         const vm = new Constructor({
-    //             el: document.createElement('div'),
-    //             propsData: {
-    //                 selecte: 0
-    //             }
-    //         })
-    //         expect(vm.$el.querySelectorAll('.w-tab')[0].classList.contains('w-tab-disabled')).to.eq(true)
-    //         vm.$el.remove()
-    //         vm.$destroy()
-    //     })
-    // })
-
 })
