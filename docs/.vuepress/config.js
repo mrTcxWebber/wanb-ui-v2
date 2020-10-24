@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  base: '/wanbUI/',
+  base: '/wanb-ui-v2/',
   title: 'wanbUI',
   description: '适用于移动端，某些功能适用于pc端的vue2 UI组件库',
   themeConfig: {
